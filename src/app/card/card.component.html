@@ -1,0 +1,38 @@
+<div class="container" style="transform: scale(1)">
+  <div class="row">
+    <!--    <div *ngFor="let card of g.game.players[0].deck; let i=index" [ngStyle]=divStyle(i)>-->
+    <div *ngFor="let card of g.game.players[g.activePlayer].cards.hand; let i=index" style="border: 100px" class="col-sm">
+      <div (mouseenter)="editScale(1.1, card)" (mouseleave)="editScale(1, card)" class="card border-primary mb-3" (click)=g.selectCard(card) [ngStyle]=cardStyle(card) style="width: 10rem; height: 14rem"><!--; position: absolute">-->
+        <div class="card-header">
+          <div class="row">
+            <div class="col">
+              <div [ngStyle]=setCardTypeStyle(card.cardType)>
+                {{card.value}}
+              </div>
+            </div>
+            <div class="col">
+              <div style="float: right">
+                {{card.boost}}
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="card-body text-primary">
+            <h5 class="card-title">{{card.name}}</h5>
+          </div>
+          <div class="card-footer text-muted">
+
+            <div class="row">
+              <div class="col">{{card.fighterName}}</div>
+              <div class="col">
+                <div style="float: right">
+                  {{"x" + card.deckCount}}</div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

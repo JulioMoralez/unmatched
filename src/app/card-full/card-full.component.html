@@ -1,0 +1,33 @@
+<div class="card border-primary mb-3" [ngStyle]=selectedCardStyle(gc)>
+  <div class="card-header">
+    <div class="row">
+      <div *ngIf="card()" class="col">
+        <div [ngStyle]=setCardTypeStyle(card()?.cardType)>
+          {{card()?.value}}
+        </div>
+      </div>
+      <div *ngIf="card()" class="col">
+        <div style="float: right">
+          {{card()?.boost}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="card()" class="card-body text-primary">
+    <h5 class="card-title">{{card()?.name}}</h5>
+    <p class="card-text" *ngIf="isEffectText(card())">{{card()?.effect}}</p>
+    <p class="card-text" *ngIf="isImmediatelyText(card())"><b>Немедленно:</b> {{card()?.immediately}}</p>
+    <p class="card-text" *ngIf="isCombatText(card())"><b>Во время боя:</b> {{card()?.combat}}</p>
+    <p class="card-text" *ngIf="isAfterText(card())"><b>После боя:</b> {{card()?.after}}</p>
+  </div>
+  <div class="card-footer text-muted">
+
+    <div *ngIf="card()" class="row">
+      <div class="col">{{card()?.fighterName}}</div>
+      <div class="col">
+        <div style="float: right">
+          {{"x" + card()?.deckCount}}</div>
+      </div>
+    </div>
+  </div>
+</div>

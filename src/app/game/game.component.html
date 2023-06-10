@@ -1,0 +1,54 @@
+<button [ngClass]="menuButton1()" (click)=newGame()>New game</button>
+<button [ngClass]="menuButton1()" (click)=action()>action</button>
+<button [ngClass]="menuButton1()" (click)=test()>test</button>
+<div class="alert alert-primary" role="alert">
+  some text
+</div>
+{{globalCount}}
+{{game.state}}
+{{game.currentAction}}
+
+<div class="container" style="width: 100px">
+  <div class="row">
+    <div *ngFor="let n of [].constructor(this.game.maxAction); let i = index" class="col-sm">
+      <div [ngStyle]="actionVisualStyle(i)">X</div>
+    </div>
+  </div>
+</div>
+<table>
+  <tr>
+    <td>
+      <div class="col" oncontextmenu = 'return false'>
+        <canvas #cnv style="border: 1px solid; background-color: lightcyan" (mouseup)="mouseUp($event)"></canvas>
+      </div>
+    </td>
+    <td>
+      <app-card-full [cardVisual]="CardVisual.SELECTED"></app-card-full>
+      <button [ngClass]="this.menuButton1()" (click)=this.discardCard()>Сбросить</button>
+      <button [ngClass]="this.menuButton1()" (click)=this.actionCard()>Действие</button>
+    </td>
+    <td>
+      <div (click)=this.test()><app-card-full [cardVisual]="CardVisual.OPPONENT"></app-card-full></div>
+      <button [ngClass]="this.menuButton1()" (click)=this.opponentAction()>Ход 2го игрока</button>
+    </td>
+    <td>
+      <div (click)=this.test() style="transform: scale(0.5)"><app-card-full [cardVisual]="CardVisual.DISCARD"></app-card-full></div>
+    </td>
+    <td>
+      <div [ngStyle]="centerTextStyle(PlayerType.ME)">
+        <p [ngStyle]="centerTextStyleP()">{{game.players[PlayerType.ME].hero.hp}}</p>
+      </div>
+    </td>
+    <td>
+      <div [ngStyle]="centerTextStyle(PlayerType.OPPONENT)">
+        <p [ngStyle]="centerTextStyleP()">{{game.players[PlayerType.OPPONENT].hero.hp}}</p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div><app-card></app-card></div>
+    </td>
+  </tr>
+</table>
+<p>
